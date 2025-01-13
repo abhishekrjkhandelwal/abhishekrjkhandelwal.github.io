@@ -3,308 +3,328 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
+    <title>Abhishek Khandelwal - Full Stack Developer</title>
     <style>
+        /* Core styles with optimized CSS */
+        :root {
+            --primary: #2563eb;
+            --bg: #ffffff;
+            --text: #1f2937;
+            --gray: #6b7280;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
         }
 
         body {
-            line-height: 1.6;
-            color: #333;
+            font-family: system-ui, -apple-system, sans-serif;
+            line-height: 1.5;
+            color: var(--text);
+            background: var(--bg);
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Header */
-        header {
-            background: #2c3e50;
-            color: white;
-            padding: 1rem 0;
+        /* Navigation */
+        nav {
             position: fixed;
             width: 100%;
-            top: 0;
-            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            z-index: 100;
         }
 
-        nav {
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-
         .nav-links a {
-            color: white;
+            color: var(--text);
             text-decoration: none;
             margin-left: 2rem;
         }
 
-        /* Hero Section */
-        .hero {
-            background: #3498db;
-            color: white;
-            padding: 8rem 0 4rem;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-        }
-
         /* Sections */
         section {
-            padding: 4rem 0;
+            padding: 4rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        .section-title {
+        .hero {
+            padding-top: 8rem;
             text-align: center;
-            margin-bottom: 3rem;
         }
 
-        /* About */
-        .about-content {
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        /* Projects Grid */
+        .projects-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
-            align-items: center;
+            margin-top: 2rem;
         }
 
-        .about-image img {
-            width: 50%;
-            border-radius: 10px;
+        .project-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
         }
 
         /* Skills */
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
         }
 
-        .skill-card {
-            background: #f8f9fa;
+        .skill-category {
+            background: white;
             padding: 1.5rem;
-            border-radius: 5px;
-            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
-        /* Projects */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
         }
 
-        .project-card {
-            background: #f8f9fa;
-            border-radius: 5px;
-            overflow: hidden;
+        .tag {
+            background: var(--primary);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.875rem;
         }
 
-        .project-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
+        /* Experience Timeline */
+        .timeline {
+            margin-top: 2rem;
         }
 
-        .project-info {
-            padding: 1.5rem;
+        .timeline-item {
+            margin-bottom: 2rem;
+            padding-left: 2rem;
+            border-left: 2px solid var(--primary);
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            width: 10px;
+            height: 10px;
+            background: var(--primary);
+            border-radius: 50%;
+            position: absolute;
+            left: -6px;
+            top: 5px;
         }
 
         /* Contact */
-        .contact-form {
-            max-width: 600px;
-            margin: 0 auto;
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
         }
 
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.5rem;
-            border: 1px solid #ddd;
+        .contact-links a {
+            color: var(--primary);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--primary);
             border-radius: 4px;
+            transition: all 0.2s;
         }
 
-        .button {
-            background: #3498db;
+        .contact-links a:hover {
+            background: var(--primary);
             color: white;
-            padding: 0.8rem 2rem;
+        }
+
+        /* Mobile Menu */
+        .menu-btn {
+            display: none;
+            background: none;
             border: none;
-            border-radius: 4px;
+            font-size: 1.5rem;
             cursor: pointer;
         }
 
-        /* Footer */
-        footer {
-            background: #2c3e50;
-            color: white;
-            text-align: center;
-            padding: 2rem 0;
-        }
-
-        /* Responsive Design */
         @media (max-width: 768px) {
+            .menu-btn {
+                display: block;
+            }
+
             .nav-links {
                 display: none;
+                width: 100%;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background: white;
+                padding: 1rem;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
             }
 
-            .about-content {
-                grid-template-columns: 1fr;
+            .nav-links.active {
+                display: block;
             }
 
-            .hero h1 {
+            .nav-links a {
+                display: block;
+                margin: 1rem 0;
+            }
+
+            h1 {
                 font-size: 2rem;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <nav class="container">
-            <div class="logo">Abhishek Khandelwal</div>
+    <nav>
+        <div class="nav-content">
+            <a href="#" style="font-weight: bold; font-size: 1.5rem; color: var(--primary); text-decoration: none;">AK.</a>
+            <button class="menu-btn">☰</button>
             <div class="nav-links">
-                <a href="#about">About</a>
-                <a href="#skills">Skills</a>
+                <a href="#home">Home</a>
                 <a href="#projects">Projects</a>
+                <a href="#skills">Skills</a>
+                <a href="#experience">Experience</a>
                 <a href="#contact">Contact</a>
             </div>
-        </nav>
-    </header>
-
-    <section class="hero">
-        <div class="container">
-            <h1>Welcome to My Portfolio</h1>
-            <p>Full-Stack JavaScript Developer | Problem Solver | Creative Thinker</p>
         </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <h1>Full-Stack JavaScript Developer</h1>
+        <p>4+ years of experience in building scalable applications</p>
     </section>
 
-    <section id="about">
-        <div class="container">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-content">
-                <div class="about-image">
-                    <img src="./Abhishek Khandelwal Photo.jpeg" width="10px" height="200px" alt="Profile Image">
+    <section id="projects">
+        <h2>Featured Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <h3>Market Research Platform</h3>
+                <p>Enterprise-scale platform with real-time analytics</p>
+                <div class="tags">
+                    <span class="tag">React</span>
+                    <span class="tag">Node.js</span>
+                    <span class="tag">MongoDB</span>
                 </div>
-                <div class="about-text">
-			<p>Highly skilled Software Developer with over 4 years of experience in building robust, scalable, and efficient web applications using MEAN/MERN stack technologies and AWS cloud services. Proficient in designing and implementing end-to-end solutions for diverse business needs, with expertise spanning front-end frameworks, back-end development, cloud architecture, and DevOps tools. Adept at problem-solving, optimizing processes, and driving innovation through collaboration and advanced technical solutions.</p>
+            </div>
+            <div class="project-card">
+                <h3>AI-Powered Survey Tool</h3>
+                <p>ML-driven platform with real-time collaboration</p>
+                <div class="tags">
+                    <span class="tag">Angular</span>
+                    <span class="tag">NestJS</span>
+                    <span class="tag">PostgreSQL</span>
+                </div>
+            </div>
+            <div class="project-card">
+                <h3>E-Commerce Platform</h3>
+                <p>Scalable solution with advanced search capabilities</p>
+                <div class="tags">
+                    <span class="tag">Next.js</span>
+                    <span class="tag">Express</span>
+                    <span class="tag">Elasticsearch</span>
                 </div>
             </div>
         </div>
     </section>
 
     <section id="skills">
-        <div class="container">
-            <h2 class="section-title">Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <h3>Frontend</h3>
-                    <p>HTML, CSS, JavaScript, React, Angular</p>
+        <h2>Technical Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-category">
+                <h3>Frontend</h3>
+                <div class="tags">
+                    <span class="tag">React</span>
+                    <span class="tag">Angular</span>
+                    <span class="tag">TypeScript</span>
+                    <span class="tag">Next.js</span>
                 </div>
-                <div class="skill-card">
-                    <h3>Backend</h3>
-                    <p>Node.js, Express, Nest.js, Next.js</p>
+            </div>
+            <div class="skill-category">
+                <h3>Backend</h3>
+                <div class="tags">
+                    <span class="tag">Node.js</span>
+                    <span class="tag">Express</span>
+                    <span class="tag">NestJS</span>
+                    <span class="tag">GraphQL</span>
                 </div>
-                <div class="skill-card">
-                    <h3>Database</h3>
-                    <p>MongoDB</p>
-                </div>
-                <div class="skill-card">
-                    <h3>Tools</h3>
-                    <p>Git, Docker, AWS</p>
+            </div>
+            <div class="skill-category">
+                <h3>Database & Cloud</h3>
+                <div class="tags">
+                    <span class="tag">MongoDB</span>
+                    <span class="tag">PostgreSQL</span>
+                    <span class="tag">Redis</span>
+                    <span class="tag">AWS</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="projects">
-        <div class="container">
-            <h2 class="section-title">Projects</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <img src="./datadigger_logotype_color.avif" alt="Project 1">
-                    <div class="project-info">
-                        <h3>DataDiggers</h3>
-                        <p>Technologies: HTML, CSS, Javascript, Angular, NodeJS, ExpressJS, MongoDB, AWS, Postman, NewRelic, Mocha, Chai, Jest, Supertest Jasmine, Karma, Cypress, protector. <br />
-                            A market research product providing clients all over the globe with a full set of reliable data collection solutions. <br />
-                            and supporting services to help their businesses grow.
-                            Upgraded Angular and Node.js stacks, improving stability, Optimized API performance and reduction in response times by 25%. <br />
-                            Reviewed over 200+ detailed code reviews, ensuring adherence to coding standards, optimizing performance, and reducing defects by 20%.</p>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <img src="" alt="Project 2">
-                    <div class="project-info">
-                        <h3>Brainactive</h3>
-                        <p>Build surveys with just a prompt, connect with over 300 million consumers globally, and gain real-time insights, all without the need for research expertise. Let Brainactive streamline your decision-making with intuitive survey tools, data visualization, and actionable insights.</p>                        
-                    </div>
-                </div>
-                <div class="project-card">
-                    <img src="./RoboMQ-new-logo-01.webp" alt="Project 3">
-                    <div class="project-info">
-                        <h3>Project 3</h3>
-                        <p>Automate business processes by integrating enterprise apps in minutes with Connect iPaaS.</p>
-                    </div>
-                </div>
+    <section id="experience">
+        <h2>Experience</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <h3>Senior Software Engineer</h3>
+                <p>OnGraph Technologies • 2023-2024</p>
+                <p>Led development of market research platforms, improving performance by 25%</p>
+            </div>
+            <div class="timeline-item">
+                <h3>Software Engineer</h3>
+                <p>OnGraph Technologies • 2022-2023</p>
+                <p>Developed RESTful APIs and implemented real-time features</p>
+            </div>
+            <div class="timeline-item">
+                <h3>Technical Engineer</h3>
+                <p>OnGraph Technologies • 2021-2022</p>
+                <p>Built full-stack features and optimized application performance</p>
             </div>
         </div>
     </section>
 
     <section id="contact">
-        <div class="container">
-            <h2 class="section-title">Contact Me</h2>
-            <form class="contact-form">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" rows="5" required></textarea>
-                </div>
-                <button type="submit" class="button">Send Message</button>
-            </form>
+        <h2>Get in Touch</h2>
+        <div class="contact-links">
+            <a href="mailto:abhishek30199808@gmail.com">Email</a>
+            <a href="https://www.linkedin.com/in/abhishek-khandelwal-b1071612b/" target="_blank">LinkedIn</a>
+            <a href="https://github.com/abhishekrjkhandelwal" target="_blank">GitHub</a>
         </div>
     </section>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 My Portfolio. All rights reserved.</p>
-        </div>
-    </footer>
-
     <script>
-        // Smooth scrolling for navigation links
+        // Simple mobile menu toggle
+        document.querySelector('.menu-btn').addEventListener('click', () => {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+
+        // Smooth scroll for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -312,13 +332,6 @@
                     behavior: 'smooth'
                 });
             });
-        });
-
-        // Simple form handling
-        document.querySelector('.contact-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thank you for your message! I will get back to you soon.');
-            this.reset();
         });
     </script>
 </body>
