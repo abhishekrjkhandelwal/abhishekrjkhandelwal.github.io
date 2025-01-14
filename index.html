@@ -4,335 +4,256 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Abhishek Khandelwal - Full Stack Developer</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <style>
-        /* Core styles with optimized CSS */
         :root {
-            --primary: #2563eb;
-            --bg: #ffffff;
-            --text: #1f2937;
-            --gray: #6b7280;
+            --primary: #3b82f6;
+            --secondary: #1d4ed8;
+            --dark: #1f2937;
+            --light: #f3f4f6;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        html {
+            scroll-behavior: smooth;
         }
 
-        body {
-            font-family: system-ui, -apple-system, sans-serif;
-            line-height: 1.5;
-            color: var(--text);
-            background: var(--bg);
+        .gradient-text {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        /* Navigation */
-        nav {
-            position: fixed;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            padding: 1rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            z-index: 100;
+        .card-hover {
+            transition: transform 0.3s ease;
         }
 
-        .nav-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-links a {
-            color: var(--text);
-            text-decoration: none;
-            margin-left: 2rem;
-        }
-
-        /* Sections */
-        section {
-            padding: 4rem 1rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .hero {
-            padding-top: 8rem;
-            text-align: center;
-        }
-
-        h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: var(--primary);
-        }
-
-        /* Projects Grid */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .project-card {
-            background: white;
-            border-radius: 8px;
-            padding: 1.5rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            transition: transform 0.2s;
-        }
-
-        .project-card:hover {
+        .card-hover:hover {
             transform: translateY(-5px);
         }
 
-        /* Skills */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .skill-category {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 1rem;
-        }
-
-        .tag {
-            background: var(--primary);
-            color: white;
-            padding: 0.25rem 0.75rem;
-            border-radius: 15px;
-            font-size: 0.875rem;
-        }
-
-        /* Experience Timeline */
-        .timeline {
-            margin-top: 2rem;
-        }
-
-        .timeline-item {
-            margin-bottom: 2rem;
-            padding-left: 2rem;
-            border-left: 2px solid var(--primary);
+        .nav-link {
             position: relative;
         }
 
-        .timeline-item::before {
+        .nav-link::after {
             content: '';
-            width: 10px;
-            height: 10px;
-            background: var(--primary);
-            border-radius: 50%;
             position: absolute;
-            left: -6px;
-            top: 5px;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
         }
 
-        /* Contact */
-        .contact-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 2rem;
+        .nav-link:hover::after {
+            width: 100%;
         }
 
-        .contact-links a {
-            color: var(--primary);
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            border: 1px solid var(--primary);
-            border-radius: 4px;
-            transition: all 0.2s;
+        .mobile-menu {
+            transition: transform 0.3s ease;
         }
 
-        .contact-links a:hover {
-            background: var(--primary);
-            color: white;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Mobile Menu */
-        .menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        @media (max-width: 768px) {
-            .menu-btn {
-                display: block;
-            }
-
-            .nav-links {
-                display: none;
-                width: 100%;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                background: white;
-                padding: 1rem;
-                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            }
-
-            .nav-links.active {
-                display: block;
-            }
-
-            .nav-links a {
-                display: block;
-                margin: 1rem 0;
-            }
-
-            h1 {
-                font-size: 2rem;
-            }
+        .animate-fade-in {
+            animation: fadeIn 0.6s ease forwards;
         }
     </style>
 </head>
-<body>
-    <nav>
-        <div class="nav-content">
-            <a href="#" style="font-weight: bold; font-size: 1.5rem; color: var(--primary); text-decoration: none;">AK.</a>
-            <button class="menu-btn">☰</button>
-            <div class="nav-links">
-                <a href="#home">Home</a>
-                <a href="#projects">Projects</a>
-                <a href="#skills">Skills</a>
-                <a href="#experience">Experience</a>
-                <a href="#contact">Contact</a>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white/90 backdrop-blur-sm shadow-sm z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <a href="#" class="text-2xl font-bold gradient-text">
+                    Abhishek Khandelwal
+                </a>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="nav-link text-gray-700 hover:text-gray-900">Home</a>
+                    <a href="#projects" class="nav-link text-gray-700 hover:text-gray-900">Projects</a>
+                    <a href="#skills" class="nav-link text-gray-700 hover:text-gray-900">Skills</a>
+                    <a href="#experience" class="nav-link text-gray-700 hover:text-gray-900">Experience</a>
+                    <a href="#contact" class="nav-link text-gray-700 hover:text-gray-900">Contact</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden text-gray-700 hover:text-gray-900" id="menu-btn">
+                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="hidden md:hidden bg-white shadow-lg" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#home" class="block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Home</a>
+                <a href="#projects" class="block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Projects</a>
+                <a href="#skills" class="block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Skills</a>
+                <a href="#experience" class="block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Experience</a>
+                <a href="#contact" class="block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Contact</a>
             </div>
         </div>
     </nav>
 
-    <section id="home" class="hero">
-        <h1>Full-Stack JavaScript Developer</h1>
-        <p>4+ years of experience in building scalable applications</p>
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-50 pt-16">
+        <div class="text-center px-4 animate-fade-in">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 gradient-text">
+                Full-Stack JavaScript Developer
+            </h1>
+            <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                4+ years of experience in building scalable applications and delivering innovative solutions
+            </p>
+        </div>
     </section>
 
-    <section id="projects">
-        <h2>Featured Projects</h2>
-        <div class="projects-grid">
-            <div class="project-card">
-                <h3>Market Research Platform</h3>
-                <p>Enterprise-scale platform with real-time analytics</p>
-                <div class="tags">
-                    <span class="tag">React</span>
-                    <span class="tag">Node.js</span>
-                    <span class="tag">MongoDB</span>
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 px-4">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 gradient-text">Featured Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project Cards -->
+                <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                    <h3 class="text-xl font-semibold mb-4">DataDiggers</h3>
+                    <p class="text-gray-600 mb-4">
+                        Upgraded Angular and Node.js stacks, optimized API performance (25% faster), and conducted 300+ code reviews.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">Angular</span>
+                        <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">Node.js</span>
+                        <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">MongoDB</span>
+                    </div>
                 </div>
-            </div>
-            <div class="project-card">
-                <h3>AI-Powered Survey Tool</h3>
-                <p>ML-driven platform with real-time collaboration</p>
-                <div class="tags">
-                    <span class="tag">Angular</span>
-                    <span class="tag">NestJS</span>
-                    <span class="tag">PostgreSQL</span>
+
+                <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                    <h3 class="text-xl font-semibold mb-4">Brainactive</h3>
+                    <p class="text-gray-600 mb-4">
+                        Build surveys with just a prompt, connect with over 300 million consumers globally, and gain real-time insights.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">React</span>
+                        <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">Node.js</span>
+                        <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">AWS</span>
+                    </div>
                 </div>
-            </div>
-            <div class="project-card">
-                <h3>E-Commerce Platform</h3>
-                <p>Scalable solution with advanced search capabilities</p>
-                <div class="tags">
-                    <span class="tag">Next.js</span>
-                    <span class="tag">Express</span>
-                    <span class="tag">Elasticsearch</span>
+
+                <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                    <h3 class="text-xl font-semibold mb-4">RoboMQ Connect</h3>
+                    <p class="text-gray-600 mb-4">
+                        Scalable solution with advanced search capabilities and real-time processing features.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">Next.js</span>
+                        <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">Express</span>
+                        <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">Elasticsearch</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="skills">
-        <h2>Technical Skills</h2>
-        <div class="skills-grid">
-            <div class="skill-category">
-                <h3>Frontend</h3>
-                <div class="tags">
-                    <span class="tag">React</span>
-                    <span class="tag">Angular</span>
-                    <span class="tag">TypeScript</span>
-                    <span class="tag">Next.js</span>
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 px-4 bg-gray-50">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 gradient-text">Technical Skills</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                    <h3 class="text-xl font-semibold mb-4">Frontend</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">React</span>
+                        <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">Angular</span>
+                        <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">TypeScript</span>
+                        <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">Next.js</span>
+                    </div>
                 </div>
-            </div>
-            <div class="skill-category">
-                <h3>Backend</h3>
-                <div class="tags">
-                    <span class="tag">Node.js</span>
-                    <span class="tag">Express</span>
-                    <span class="tag">NestJS</span>
-                    <span class="tag">GraphQL</span>
+
+                <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                    <h3 class="text-xl font-semibold mb-4">Backend</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">Node.js</span>
+                        <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">Express</span>
+                        <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">NestJS</span>
+                        <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">GraphQL</span>
+                    </div>
                 </div>
-            </div>
-            <div class="skill-category">
-                <h3>Database & Cloud</h3>
-                <div class="tags">
-                    <span class="tag">MongoDB</span>
-                    <span class="tag">PostgreSQL</span>
-                    <span class="tag">Redis</span>
-                    <span class="tag">AWS</span>
+
+                <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                    <h3 class="text-xl font-semibold mb-4">Database & Cloud</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">MongoDB</span>
+                        <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">PostgreSQL</span>
+                        <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">Redis</span>
+                        <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">AWS</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="experience">
-        <h2>Experience</h2>
-        <div class="timeline">
-            <div class="timeline-item">
-                <h3>Senior Software Engineer</h3>
-                <p>OnGraph Technologies • 2023-2024</p>
-                <p>Led development of market research platforms, improving performance by 25%</p>
-            </div>
-            <div class="timeline-item">
-                <h3>Software Engineer</h3>
-                <p>OnGraph Technologies • 2022-2023</p>
-                <p>Developed RESTful APIs and implemented real-time features</p>
-            </div>
-            <div class="timeline-item">
-                <h3>Technical Engineer</h3>
-                <p>OnGraph Technologies • 2021-2022</p>
-                <p>Built full-stack features and optimized application performance</p>
+    <!-- Experience Section -->
+    <section id="experience" class="py-20 px-4">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 gradient-text">Experience</h2>
+            <div class="space-y-8">
+                <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                    <h3 class="text-xl font-semibold">Senior Software Engineer</h3>
+                    <p class="text-gray-600">OnGraph Technologies • 2023-2024</p>
+                    <p class="mt-2">Led development of market research platforms, improving performance by 25%</p>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                    <h3 class="text-xl font-semibold">Software Engineer</h3>
+                    <p class="text-gray-600">OnGraph Technologies • 2022-2023</p>
+                    <p class="mt-2">Developed RESTful APIs and implemented real-time features</p>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                    <h3 class="text-xl font-semibold">Technical Engineer</h3>
+                    <p class="text-gray-600">OnGraph Technologies • 2021-2022</p>
+                    <p class="mt-2">Built full-stack features and optimized application performance</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="contact">
-        <h2>Get in Touch</h2>
-        <div class="contact-links">
-            <a href="mailto:abhishek30199808@gmail.com">Email</a>
-            <a href="https://www.linkedin.com/in/abhishek-khandelwal-b1071612b/" target="_blank">LinkedIn</a>
-            <a href="https://github.com/abhishekrjkhandelwal" target="_blank">GitHub</a>
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-4 bg-gray-50">
+        <div class="max-w-7xl mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 gradient-text">Get in Touch</h2>
+            <div class="flex flex-col md:flex-row justify-center gap-4 md:gap-8">
+                <a href="mailto:abhishek30199808@gmail.com" 
+                   class="px-8 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors duration-300">
+                    Email
+                </a>
+                <a href="https://www.linkedin.com/in/abhishek-khandelwal-b1071612b/" 
+                   target="_blank"
+                   class="px-8 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors duration-300">
+                    LinkedIn
+                </a>
+                <a href="https://github.com/abhishekrjkhandelwal" 
+                   target="_blank"
+                   class="px-8 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors duration-300">
+                    GitHub
+                </a>
+            </div>
         </div>
     </section>
 
     <script>
-        // Simple mobile menu toggle
-        document.querySelector('.menu-btn').addEventListener('click', () => {
-            document.querySelector('.nav-links').classList.toggle('active');
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
         });
 
-        // Smooth scroll for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
-</body>
-</html>
+        // Close mobile menu when clicking a link
