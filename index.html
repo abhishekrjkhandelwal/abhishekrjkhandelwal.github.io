@@ -93,6 +93,45 @@
                 padding-right: 1rem;
             }
         }
+        .scroll-btn {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    animation: glow 2s infinite ease-in-out;
+}
+
+.scroll-icon {
+    width: 48px;
+    height: 48px;
+    stroke: #ffffff;
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0.8;
+    }
+}
+
+@keyframes glow {
+    0%, 100% {
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.6), 0 0 20px rgba(255, 255, 255, 0.4);
+    }
+    50% {
+        box-shadow: 0 0 15px rgba(255, 255, 255, 1), 0 0 30px rgba(255, 255, 255, 0.7);
+    }
+}
+
     </style>
 </head>
 <body class="antialiased">
@@ -152,6 +191,12 @@
                     View Work
                 </a>
             </div>
+            <button onclick="scrollDown()" class="scroll-btn">
+                <svg class="scroll-icon" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <polyline points="19 12 12 19 5 12"></polyline>
+                </svg>
+            </button>
         </div>
     </section>
 
@@ -452,6 +497,9 @@
                 mobileMenu.classList.add('hidden');
             }
         });
+        function scrollDown() {
+            window.scrollBy({ top: window.innerHeight, behavior: 'smooth' });
+        }
     </script>
 </body>
 </html>
