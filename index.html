@@ -1,57 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Abhishek Khandelwal - Full Stack Developer</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
-            --primary: #3b82f6;
-            --secondary: #1d4ed8;
-            --dark: #1f2937;
-            --light: #f3f4f6;
+            --primary: #60A5FA;
+            --secondary: #3B82F6;
         }
 
-        html {
-            scroll-behavior: smooth;
+        body {
+            background-color: #111827;
+            color: #F3F4F6;
         }
 
-        .gradient-text {
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .gradient-bg {
+            background: linear-gradient(135deg, #1E3A8A 0%, #1E40AF 100%);
         }
 
         .card-hover {
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         .card-hover:hover {
             transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
 
-        .nav-link {
-            position: relative;
+        .skill-badge {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.2);
         }
 
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -2px;
-            left: 0;
-            background-color: var(--primary);
-            transition: width 0.3s ease;
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        .mobile-menu {
-            transition: transform 0.3s ease;
+        .animate-fade-in {
+            animation: fadeIn 0.6s ease-out;
         }
 
         @keyframes fadeIn {
@@ -59,128 +44,236 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .animate-fade-in {
-            animation: fadeIn 0.6s ease forwards;
+        .timeline-dot::before {
+            content: '';
+            position: absolute;
+            width: 2px;
+            height: 100%;
+            background-color: #3B82F6;
+            left: -30px;
+            top: 0;
+        }
+
+        .social-icon {
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-3px);
+            color: var(--primary);
+        }
+
+        /* Added responsive menu styles */
+        .mobile-menu-enter {
+            transform: translateY(-100%);
+            opacity: 0;
+        }
+
+        .mobile-menu-enter-active {
+            transform: translateY(0);
+            opacity: 1;
+            transition: all 0.3s ease-out;
+        }
+
+        .mobile-menu-exit {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .mobile-menu-exit-active {
+            transform: translateY(-100%);
+            opacity: 0;
+            transition: all 0.3s ease-in;
+        }
+
+        /* Added responsive padding for small screens */
+        @media (max-width: 640px) {
+            section {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
         }
     </style>
 </head>
-<body class="bg-gray-50">
+<body class="antialiased">
     <!-- Navigation -->
-    <nav class="fixed w-full bg-white/90 backdrop-blur-sm shadow-sm z-50">
+    <nav class="fixed w-full bg-gray-900/90 backdrop-blur-sm border-b border-gray-800 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16 items-center">
-                <a href="#" class="text-2xl font-bold gradient-text">
-                    Abhishek Khandelwal
+                <a href="#" class="text-2xl font-bold text-blue-500">
+                    AK
                 </a>
                 
                 <!-- Desktop Navigation -->
                 <div class="hidden md:flex space-x-8">
-                    <a href="#home" class="nav-link text-gray-700 hover:text-gray-900">Home</a>
-                    <a href="#projects" class="nav-link text-gray-700 hover:text-gray-900">Projects</a>
-                    <a href="#skills" class="nav-link text-gray-700 hover:text-gray-900">Skills</a>
-                    <a href="#experience" class="nav-link text-gray-700 hover:text-gray-900">Experience</a>
-                    <a href="#contact" class="nav-link text-gray-700 hover:text-gray-900">Contact</a>
+                    <a href="#home" class="text-gray-300 hover:text-white transition-colors">Home</a>
+                    <a href="#about" class="text-gray-300 hover:text-white transition-colors">About</a>
+                    <a href="#projects" class="text-gray-300 hover:text-white transition-colors">Projects</a>
+                    <a href="#skills" class="text-gray-300 hover:text-white transition-colors">Skills</a>
+                    <a href="#experience" class="text-gray-300 hover:text-white transition-colors">Experience</a>
+                    <a href="#contact" class="text-gray-300 hover:text-white transition-colors">Contact</a>
                 </div>
 
                 <!-- Mobile Menu Button -->
-                <button class="md:hidden text-gray-700 hover:text-gray-900" id="menu-btn">
-                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-                    </svg>
+                <button class="md:hidden text-gray-300 hover:text-white p-2" id="menu-btn" aria-label="Toggle menu">
+                    <i class="fas fa-bars text-xl"></i>
                 </button>
             </div>
         </div>
 
         <!-- Mobile Menu -->
-        <div class="hidden md:hidden bg-white shadow-lg" id="mobile-menu">
-            <div class="px-2 pt-2 pb-3 space-y-1">
-                <a href="#home" class="block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Home</a>
-                <a href="#projects" class="block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Projects</a>
-                <a href="#skills" class="block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Skills</a>
-                <a href="#experience" class="block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Experience</a>
-                <a href="#contact" class="block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Contact</a>
+        <div class="hidden md:hidden bg-gray-900 border-b border-gray-800" id="mobile-menu">
+            <div class="px-4 py-3 space-y-2">
+                <a href="#home" class="block text-gray-300 hover:text-white py-2 px-3 rounded transition-colors">Home</a>
+                <a href="#about" class="block text-gray-300 hover:text-white py-2 px-3 rounded transition-colors">About</a>
+                <a href="#projects" class="block text-gray-300 hover:text-white py-2 px-3 rounded transition-colors">Projects</a>
+                <a href="#skills" class="block text-gray-300 hover:text-white py-2 px-3 rounded transition-colors">Skills</a>
+                <a href="#experience" class="block text-gray-300 hover:text-white py-2 px-3 rounded transition-colors">Experience</a>
+                <a href="#contact" class="block text-gray-300 hover:text-white py-2 px-3 rounded transition-colors">Contact</a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-50 pt-16">
-        <div class="text-center px-4 animate-fade-in">
-            <h1 class="text-4xl md:text-6xl font-bold mb-6 gradient-text">
-                Full-Stack JavaScript Developer
+    <section id="home" class="min-h-screen flex items-center justify-center gradient-bg px-4 py-20 md:py-0">
+        <div class="text-center animate-fade-in max-w-4xl mx-auto">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 text-white leading-tight">
+                Abhishek Khandelwal
             </h1>
-            <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-                4+ years of experience in building scalable applications and delivering innovative solutions
+            <p class="text-xl md:text-2xl text-blue-200 mb-8">Full Stack Developer</p>
+            <p class="text-lg text-gray-300 max-w-2xl mx-auto mb-12 px-4">
+                4+ years of experience in building scalable web applications and delivering innovative solutions
             </p>
+            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4 px-4">
+                <a href="#contact" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full transition-colors">
+                    Contact Me
+                </a>
+                <a href="#projects" class="bg-gray-800 hover:bg-gray-700 text-white px-8 py-3 rounded-full transition-colors">
+                    View Work
+                </a>
+            </div>
         </div>
     </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="py-20 px-4">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 gradient-text">Featured Projects</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Project Cards -->
-                <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
-                    <h3 class="text-xl font-semibold mb-4">DataDiggers</h3>
-                    <p class="text-gray-600 mb-4">
-                        Upgraded Angular and Node.js stacks, optimized API performance (25% faster), and conducted 300+ code reviews.
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-blue-500">About Me</h2>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6 text-gray-300">
+                    <p class="text-lg">
+                        Senior Full Stack Developer with expertise in building scalable web applications using modern JavaScript frameworks and cloud technologies.
                     </p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">HTML</span>
-                        <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">CSS</span>
-                        <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">JavaScript</span>
-                        <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">TypeScript</span>
-                        <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">Angular</span>
-                        <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">Node.js</span>
-                        <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">MongoDB</span>
-                        <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">AWS</span>                
-                    </div>
+                    <p class="text-lg">
+                        Specialized in MEAN/MERN stack development with a strong focus on performance optimization and user experience.
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex items-center"><i class="fas fa-check text-blue-500 mr-3"></i> 4+ years of professional experience</li>
+                        <li class="flex items-center"><i class="fas fa-check text-blue-500 mr-3"></i> Led multiple successful projects</li>
+                        <li class="flex items-center"><i class="fas fa-check text-blue-500 mr-3"></i> Expert in JavaScript/TypeScript</li>
+                        <li class="flex items-center"><i class="fas fa-check text-blue-500 mr-3"></i> Strong problem-solving skills</li>
+                    </ul>
                 </div>
-
-                <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
-                    <h3 class="text-xl font-semibold mb-4">Brainactive</h3>
-                    <p class="text-gray-600 mb-4">
-                        Build surveys with just a prompt, connect with over 300 million consumers globally, and gain real-time insights.
-                    </p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">HTML</span>
-                        <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">CSS</span>
-                        <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">JavaScript</span>
-                        <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">TypeScript</span>
-                        <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">React</span>
-                        <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">Node.js</span>
-                        <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">MongoDB</span>
-                        <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">AWS</span>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-gray-800 p-6 rounded-lg text-center transform hover:scale-105 transition-transform">
+                        <h3 class="text-3xl font-bold text-blue-500 mb-2">4+</h3>
+                        <p class="text-gray-400">Years Experience</p>
                     </div>
-                </div>
-
-                <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
-                    <h3 class="text-xl font-semibold mb-4">RoboMQ Connect</h3>
-                    <p class="text-gray-600 mb-4">
-                        Scalable solution with advanced search capabilities and real-time processing features.
-                    </p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">HTML</span>
-                        <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">CSS</span>
-                        <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">JavaScript</span>
-                        <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">TypeScript</span>
-                        <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">Angular</span>
-                        <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">Node.js</span>
-                        <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">MongoDB</span>
-                        <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">AWS</span>
+                    <div class="bg-gray-800 p-6 rounded-lg text-center transform hover:scale-105 transition-transform">
+                        <h3 class="text-3xl font-bold text-blue-500 mb-2">20+</h3>
+                        <p class="text-gray-400">Projects Completed</p>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg text-center transform hover:scale-105 transition-transform">
+                        <h3 class="text-3xl font-bold text-blue-500 mb-2">300+</h3>
+                        <p class="text-gray-400">Code Reviews</p>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg text-center transform hover:scale-105 transition-transform">
+                        <h3 class="text-3xl font-bold text-blue-500 mb-2">25%</h3>
+                        <p class="text-gray-400">Performance Boost</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="py-20 px-4 bg-gray-50">
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-blue-500">Featured Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project Cards -->
+                <div class="bg-gray-800 rounded-xl p-6 card-hover border border-gray-700">
+                    <h3 class="text-xl font-semibold mb-4 text-white">DataDiggers</h3>
+                    <p class="text-gray-400 mb-4">
+                        Market research platform with enhanced performance:
+                        • Upgraded Angular and Node.js stacks
+                        • 25% faster API performance
+                        • 300+ code reviews
+                        • Real-time analytics
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="skill-badge px-3 py-1 rounded-full text-blue-400 text-sm">HTML</span>
+                        <span class="skill-badge px-3 py-1 rounded-full text-blue-400 text-sm">CSS</span>
+                        <span class="skill-badge px-3 py-1 rounded-full text-blue-400 text-sm">Javascript</span>
+                        <span class="skill-badge px-3 py-1 rounded-full text-blue-400 text-sm">Typescript</span>
+                        <span class="skill-badge px-3 py-1 rounded-full text-blue-400 text-sm">Angular</span>
+                        <span class="skill-badge px-3 py-1 rounded-full text-blue-400 text-sm">Node.js</span>
+                        <span class="skill-badge px-3 py-1 rounded-full text-blue-400 text-sm">MongoDB</span>
+                    </div>
+                    <a href="#" class="text-blue-500 hover:text-blue-400 inline-flex items-center group">
+                        View Project <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+                <div class="bg-gray-800 rounded-xl p-6 card-hover border border-gray-700">
+                    <h3 class="text-xl font-semibold mb-4 text-white">Brainactive</h3>
+                    <p class="text-gray-400 mb-4">
+                        Build surveys with just a prompt, connect with over 300 million consumers globally, and gain real-time insights.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="skill-badge px-3 py-1 rounded-full text-blue-400 text-sm">HTML</span>
+                        <span class="skill-badge px-3 py-1 rounded-full text-blue-400 text-sm">CSS</span>
+                        <span class="skill-badge px-3 py-1 rounded-full text-blue-400 text-sm">Javascript</span>
+                        <span class="skill-badge px-3 py-1 rounded-full text-blue-400 text-sm">Typescript</span>
+                        <span class="skill-badge px-3 py-1 rounded-full text-blue-400 text-sm">React</span>
+                        <span class="skill-badge px-3 py-1 rounded-full text-blue-400 text-sm">Node.js</span>
+                        <span class="skill-badge px-3 py-1 rounded-full text-blue-400 text-sm">MongoDB</span>
+                        <span class="skill-badge px-3 py-1 rounded-full text-blue-400 text-sm">AWS</span>
+                    </div>
+                    <a href="#" class="text-blue-500 hover:text-blue-400 inline-flex items-center group">
+                        View Project <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+                <div class="bg-gray-800 rounded-xl p-6 card-hover border border-gray-700">
+                    <h3 class="text-xl font-semibold mb-4 text-white">RoboMQ Connect</h3>
+                    <p class="text-gray-400 mb-4">
+                        Scalable solution with advanced search capabilities and real-time processing features.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="skill-badge px-3 py-1 rounded-full text-blue-400 text-sm">HTML</span>
+                        <span class="skill-badge px-3 py-1 rounded-full text-blue-400 text-sm">CSS</span>
+                        <span class="skill-badge px-3 py-1 rounded-full text-blue-400 text-sm">Javascript</span>
+                        <span class="skill-badge px-3 py-1 rounded-full text-blue-400 text-sm">Typescript</span>
+                        <span class="skill-badge px-3 py-1 rounded-full text-blue-400 text-sm">Angular</span>
+                        <span class="skill-badge px-3 py-1 rounded-full text-blue-400 text-sm">Node.js</span>
+                        <span class="skill-badge px-3 py-1 rounded-full text-blue-400 text-sm">MongoDB</span>
+                        <span class="skill-badge px-3 py-1 rounded-full text-blue-400 text-sm">Spring Boot</span>
+                        <span class="skill-badge px-3 py-1 rounded-full text-blue-400 text-sm">AWS</span>
+                    </div>
+                    <a href="#" class="text-blue-500 hover:text-blue-400 inline-flex items-center group">
+                        View Project <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+                <!-- Add more project cards here -->
+            </div>
+        </div>
+    </section>
+
+      <!-- Skills Section -->
+    <section id="skills" class="py-20 bg-gray-900">
         <div class="max-w-7xl mx-auto">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 gradient-text">Technical Skills</h2>
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-blue-500">Technical Skills</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                <div class="bg-gray-800 rounded-xl p-6 card-hover border border-gray-700">
                     <h3 class="text-xl font-semibold mb-4">Frontend</h3>
                     <div class="flex flex-wrap gap-2">
                         <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">HTML</span>
@@ -192,7 +285,7 @@
                     </div>
                 </div>
 
-                <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                <div class="bg-gray-800 rounded-xl p-6 card-hover border border-gray-700">
                     <h3 class="text-xl font-semibold mb-4">Backend</h3>
                     <div class="flex flex-wrap gap-2">
                         <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">Node.js</span>
@@ -201,7 +294,7 @@
                     </div>
                 </div>
 
-                <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                <div class="bg-gray-800 rounded-xl p-6 card-hover border border-gray-700">
                     <h3 class="text-xl font-semibold mb-4">Database & Cloud</h3>
                     <div class="flex flex-wrap gap-2">
                         <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">MongoDB</span>
@@ -213,46 +306,46 @@
         </div>
     </section>
 
-    <!-- Experience Section -->
-    <section id="experience" class="py-20 px-4">
+     <!-- Experience Section -->
+    <section id="experience" class="py-20 bg-gray-900">
         <div class="max-w-7xl mx-auto">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 gradient-text">Experience</h2>
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-blue-500">Experience</h2>
             <div class="space-y-8">
-                <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
-                    <h3 class="text-xl font-semibold">Senior Software Engineer</h3>
-                    <p class="text-gray-600">OnGraph Technologies • April 2023- August 2024</p>
+                <div class="bg-gray-800 rounded-xl p-6 card-hover border border-gray-700">
+                    <h3 class="text-xl font-semibold mb-4 text-white">Senior Software Engineer</h3>
+                    <p class="text-gray-400 mb-4">OnGraph Technologies • April 2023- August 2024</p>
                     <p class="mt-2">Led development of market research platforms, improving performance by 25%</p>
                 </div>
 
-                <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                <div class="bg-gray-800 rounded-xl p-6 card-hover border border-gray-700">
                     <h3 class="text-xl font-semibold">Software Engineer</h3>
-                    <p class="text-gray-600">OnGraph Technologies • April 2022- April 2023</p>
+                    <p class="text-gray-400 mb-4">OnGraph Technologies • April 2022- April 2023</p>
                     <p class="mt-2">Developed RESTful APIs and implemented real-time features</p>
                 </div>
 
-                <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                <div class="bg-gray-800 rounded-xl p-6 card-hover border border-gray-700">
                     <h3 class="text-xl font-semibold">Technical Engineer</h3>
-                    <p class="text-gray-600">OnGraph Technologies • April 2021- April 2022</p>
+                    <p class="text-gray-400 mb-4">OnGraph Technologies • April 2021- April 2022</p>
                     <p class="mt-2">Built full-stack features and optimized application performance</p>
                 </div>
 
-                <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                <div class="bg-gray-800 rounded-xl p-6 card-hover border border-gray-700">
                     <h3 class="text-xl font-semibold">Software Development Engineer Intern</h3>
-                    <p class="text-gray-600">RoboMQ Connect • Jan 2020 - December 2020</p>
+                    <p class="text-gray-400 mb-4">RoboMQ Connect • Jan 2020 - December 2020</p>
                     <p class="mt-2">Built full-stack features and optimized application performance</p>
                 </div>
 
-                <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                <div class="bg-gray-800 rounded-xl p-6 card-hover border border-gray-700">
                     <h3 class="text-xl font-semibold">Internship</h3>
-                    <p class="text-gray-600">TensaX Innovation Lab • 2019</p>
+                    <p class="text-gray-400 mb-4">TensaX Innovation Lab • 2019</p>
                     <p class="mt-2">Built full-stack features and optimized application performance</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 px-4 bg-gray-50">
+        <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-900">
         <div class="max-w-7xl mx-auto text-center">
             <h2 class="text-3xl md:text-4xl font-bold mb-12 gradient-text">Get in Touch</h2>
             <div class="flex flex-col md:flex-row justify-center gap-4 md:gap-8">
@@ -274,13 +367,28 @@
         </div>
     </section>
 
+    <!-- Mobile Menu Toggle Script -->
     <script>
-        // Mobile menu toggle
-        const menuBtn = document.getElementById('menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        
-        menuBtn.addEventListener('click', () => {
+        document.getElementById('menu-btn').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
             mobileMenu.classList.toggle('hidden');
         });
 
         // Close mobile menu when clicking a link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuBtn = document.getElementById('menu-btn');
+            if (!mobileMenu.contains(e.target) && !menuBtn.contains(e.target)) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
