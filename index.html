@@ -93,6 +93,129 @@
                 padding-right: 1rem;
             }
         }
+
+         .header {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1a237e 0%, #4a148c 50%, #1a1a2e 100%);
+            color: white;
+            font-family: 'Arial', sans-serif;
+            padding: 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            padding: 1rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background-color 0.3s;
+            color: white;
+            text-decoration: none;
+        }
+
+        .social-link:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .title {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #60a5fa, #a78bfa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: bold;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #e2e8f0;
+        }
+
+        .description {
+            font-size: 1.125rem;
+            margin-bottom: 2rem;
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .button {
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+
+        .button-primary {
+            background-color: #2563eb;
+            color: white;
+        }
+
+        .button-primary:hover {
+            background-color: #1d4ed8;
+        }
+
+        .button-secondary {
+            background-color: #1f2937;
+            color: white;
+        }
+
+        .button-secondary:hover {
+            background-color: #374151;
+        }
+
+        .icon {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1.25rem;
+            }
+
+            .description {
+                font-size: 1rem;
+            }
+
+            .buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .button {
+                text-align: center;
+            }
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -135,63 +258,37 @@
     </nav>
 
     <!-- Hero Section -->
-    <section style="min-height: 60vh" className="bg-gradient-to-br from-indigo-900 via-purple-900 to-slate-900 text-white">
-      <div className="container mx-auto px-4 py-20">
-        <div className="flex justify-end gap-4 mb-12">
-          <a
-            href="mailto:abhishek30199808@gmail.com"
-            className="p-2 rounded-full hover:bg-white/10 transition-colors"
-            aria-label="Email"
-          >
-            <Mail size={24} />
-          </a>
-          <a
-            href="https://www.linkedin.com/in/abhishek-khandelwal-b1071612b/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-2 rounded-full hover:bg-white/10 transition-colors"
-            aria-label="LinkedIn"
-          >
-            <Linkedin size={24} />
-          </a>
-          <a
-            href="https://github.com/abhishekrjkhandelwal"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-2 rounded-full hover:bg-white/10 transition-colors"
-            aria-label="GitHub"
-          >
-            <Github size={24} />
-          </a>
-        </div>
-        
-        <div className="text-center max-w-3xl mx-auto">
-          <h1 className="text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-            Abhishek Khandelwal
-          </h1>
-          <h2 className="text-2xl font-medium mb-6 text-gray-200">
-            Full Stack Developer
-          </h2>
-          <p className="text-lg text-gray-300 mb-8">
-            4+ years of experience in building scalable web applications and delivering innovative solutions
-          </p>
-          <div className="flex gap-4 justify-center">
-            <a
-              href="#contact"
-              className="px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg font-medium transition-colors"
-            >
-              Contact Me
+   <header class="header">
+        <nav class="social-links">
+            <a href="mailto:abhishek30199808@gmail.com" class="social-link" aria-label="Email">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                    <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
             </a>
-            <a
-              href="#work"
-              className="px-6 py-3 bg-gray-800 hover:bg-gray-700 rounded-lg font-medium transition-colors"
-            >
-              View Work
+            <a href="https://www.linkedin.com/in/abhishek-khandelwal-b1071612b/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                    <rect x="2" y="9" width="4" height="12"></rect>
+                    <circle cx="4" cy="4" r="2"></circle>
+                </svg>
             </a>
-          </div>
+            <a href="https://github.com/abhishekrjkhandelwal" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                </svg>
+            </a>
+        </nav>
+        <div class="content">
+            <h1 class="title">Abhishek Khandelwal</h1>
+            <h2 class="subtitle">Full Stack Developer</h2>
+            <p class="description">4+ years of experience in building scalable web applications and delivering innovative solutions</p>
+            <div class="buttons">
+                <a href="#contact" class="button button-primary">Contact Me</a>
+                <a href="#work" class="button button-secondary">View Work</a>
+            </div>
         </div>
-      </div>
-      </section>
+    </header>
 
     <!-- About Section -->
     <section id="about" class="py-20 bg-gray-900">
@@ -484,6 +581,20 @@
         function scrollDown() {
             window.scrollBy({ top: window.innerHeight, behavior: 'smooth' });
         }
+
+        // Add smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
     </script>
 </body>
 </html>
