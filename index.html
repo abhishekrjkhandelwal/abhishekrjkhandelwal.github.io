@@ -135,51 +135,62 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" style="min-height: 60vh" class="flex items-center justify-center gradient-bg px-4 py-20 md:py-0">
-        <div class="text-center animate-fade-in max-w-4xl mx-auto">
-            <div className="flex justify-end gap-4 mb-12">
-              <a
-                href="mailto:abhishek30199808@gmail.com"
-                className="p-2 rounded-full hover:bg-white/10 transition-colors"
-                aria-label="Email"
-              >
-                <Mail size={24} />
-              </a>
-              <a
-                href="https://www.linkedin.com/in/abhishek-khandelwal-b1071612b/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-full hover:bg-white/10 transition-colors"
-                aria-label="LinkedIn"
-              >
-                <Linkedin size={24} />
-              </a>
-              <a
-                href="https://github.com/abhishekrjkhandelwal"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-full hover:bg-white/10 transition-colors"
-                aria-label="GitHub"
-              >
-                <Github size={24} />
-              </a>
-            </div>
-            <h1 class="text-4xl md:text-6xl font-bold mb-6 text-white leading-tight">
-                Abhishek Khandelwal
-            </h1>
-            <p class="text-xl md:text-2xl text-blue-200 mb-8">Full Stack Developer</p>
-            <p class="text-lg text-gray-300 max-w-2xl mx-auto mb-12 px-4">
-                4+ years of experience in building scalable web applications and delivering innovative solutions
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4 px-4">
-                <a href="#contact" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full transition-colors">
-                    Contact Me
-                </a>
-                <a href="#projects" class="bg-gray-800 hover:bg-gray-700 text-white px-8 py-3 rounded-full transition-colors">
-                    View Work
-                </a>
-            </div>
+    <section style="min-height: 60vh" className="bg-gradient-to-br from-indigo-900 via-purple-900 to-slate-900 text-white">
+      <div className="container mx-auto px-4 py-20">
+        <div className="flex justify-end gap-4 mb-12">
+          <a
+            href="mailto:abhishek30199808@gmail.com"
+            className="p-2 rounded-full hover:bg-white/10 transition-colors"
+            aria-label="Email"
+          >
+            <Mail size={24} />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/abhishek-khandelwal-b1071612b/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-2 rounded-full hover:bg-white/10 transition-colors"
+            aria-label="LinkedIn"
+          >
+            <Linkedin size={24} />
+          </a>
+          <a
+            href="https://github.com/abhishekrjkhandelwal"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-2 rounded-full hover:bg-white/10 transition-colors"
+            aria-label="GitHub"
+          >
+            <Github size={24} />
+          </a>
         </div>
+        
+        <div className="text-center max-w-3xl mx-auto">
+          <h1 className="text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+            Abhishek Khandelwal
+          </h1>
+          <h2 className="text-2xl font-medium mb-6 text-gray-200">
+            Full Stack Developer
+          </h2>
+          <p className="text-lg text-gray-300 mb-8">
+            4+ years of experience in building scalable web applications and delivering innovative solutions
+          </p>
+          <div className="flex gap-4 justify-center">
+            <a
+              href="#contact"
+              className="px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg font-medium transition-colors"
+            >
+              Contact Me
+            </a>
+            <a
+              href="#work"
+              className="px-6 py-3 bg-gray-800 hover:bg-gray-700 rounded-lg font-medium transition-colors"
+            >
+              View Work
+            </a>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- About Section -->
