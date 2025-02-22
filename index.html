@@ -253,71 +253,101 @@
           100% { transform: rotateX(360deg) rotateY(360deg); }
         }
 
-         .skill-container {
+       .skill-container {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 15px;
             justify-content: center;
             padding: 20px;
+            max-width: 800px;
         }
 
         .skill-chip {
-            padding: 10px 20px;
+            padding: 12px 25px;
             border-radius: 25px;
-            border: none;
+            border: 2px solid rgba(255, 255, 255, 0.1);
             cursor: pointer;
             font-size: 16px;
-            transition: all 0.3s ease;
+            font-weight: 500;
+            transition: all 0.4s ease;
+            background: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(5px);
+            position: relative;
+            overflow: hidden;
         }
 
         .skill-chip:hover {
-            transform: scale(1.05);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            color: white;
         }
 
         .skill-chip.active {
             color: white;
-            transform: scale(1.1);
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
         }
 
-        /* Skill-specific colors */
-        .angular { background-color: #e1e1e1; }
-        .angular.active { background-color: #dd1b16; }
-        
-        .react { background-color: #e1e1e1; }
-        .react.active { background-color: #61dafb; }
-        
-        .mongodb { background-color: #e1e1e1; }
-        .mongodb.active { background-color: #4db33d; }
-        
-        .mysql { background-color: #e1e1e1; }
-        .mysql.active { background-color: #00758f; }
-        
-        .nodejs { background-color: #e1e1e1; }
-        .nodejs.active { background-color: #68a063; }
-        
-        .aws { background-color: #e1e1e1; }
-        .aws.active { background-color: #ff9900; }
-
-        .chip {
-            display: inline-block;
-            padding: 10px 20px;
-            margin: 10px;
-            border-radius: 30px;
-            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
-            color: #333;
-            font-weight: bold;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        /* Skill-specific styling */
+        .angular.active {
+            background: linear-gradient(45deg, #dd1b16, #ff4444);
+            border-color: #ff4444;
         }
-    
-        .chip:hover {
-            transform: translateY(-3px);
-            background: linear-gradient(135deg, #ffdde1 0%, #ee9ca7 100%);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-            color: #000;
+
+        .react.active {
+            background: linear-gradient(45deg, #61dafb, #00b7ff);
+            border-color: #61dafb;
+        }
+
+        .mongodb.active {
+            background: linear-gradient(45deg, #4db33d, #6cc551);
+            border-color: #4db33d;
+        }
+
+        .mysql.active {
+            background: linear-gradient(45deg, #00758f, #00a5cf);
+            border-color: #00758f;
+        }
+
+        .nodejs.active {
+            background: linear-gradient(45deg, #68a063, #8bc34a);
+            border-color: #68a063;
+        }
+
+        .aws.active {
+            background: linear-gradient(45deg, #ff9900, #ffb144);
+            border-color: #ff9900;
+        }
+
+        /* Ripple effect */
+        .skill-chip::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            border-radius: 100%;
+            transform: scale(1, 1) translate(-50%);
+            transform-origin: 50% 50%;
+        }
+
+        .skill-chip:focus:not(:active)::after {
+            animation: ripple 1s ease-out;
+        }
+
+        @keyframes ripple {
+            0% {
+                transform: scale(0, 0);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(100, 100);
+                opacity: 0;
+            }
         }
     </style>
 </head>
@@ -839,20 +869,14 @@
             });
         });
 
-        function toggleSkill(element) {
-            // Toggle active class on clicked element
+   function toggleSkill(element) {
+            // Toggle active class
             element.classList.toggle('active');
-            
-            // Optional: Deactivate other chips when one is selected
-            // Uncomment the following lines if you want only one active chip at a time
-            /*
-            const chips = document.querySelectorAll('.skill-chip');
-            chips.forEach(chip => {
-                if (chip !== element) {
-                    chip.classList.remove('active');
-                }
-            });
-            */
+
+            // Add ripple effect on click
+            element.style.animation = 'none';
+            element.offsetHeight; // Trigger reflow
+            element.style.animation = null;
         }
     </script>
 </body>
