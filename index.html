@@ -215,15 +215,6 @@
             .button {
                 text-align: center;
             }
-
-            .skill-container {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 15px;
-                justify-content: center;
-                padding: 20px;
-                max-width: 800px;
-            }
         }
         .cube-container {
           perspective: 1000px;
@@ -261,36 +252,58 @@
           0% { transform: rotateX(0deg) rotateY(0deg); }
           100% { transform: rotateX(360deg) rotateY(360deg); }
         }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-       .skill-container {
+        body {
+            background: linear-gradient(45deg, #1a1245, #2d1b69);
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        .skill-container {
             display: flex;
             flex-wrap: wrap;
             gap: 15px;
             justify-content: center;
             padding: 20px;
-            max-width: 800px;
-            margin-left: 23%;
+            max-width: 900px;
+            width: 100%;
         }
 
         .skill-chip {
-            padding: 12px 25px;
-            border-radius: 25px;
+            padding: 15px 30px;
+            border-radius: 50px;
             border: 2px solid rgba(255, 255, 255, 0.1);
             cursor: pointer;
             font-size: 16px;
             font-weight: 500;
-            transition: all 0.4s ease;
+            transition: all 0.3s ease;
             background: rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(255, 255, 255, 0.9);
             backdrop-filter: blur(5px);
             position: relative;
             overflow: hidden;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
         }
 
-        .skill-chip:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            color: white;
+        /* Desktop hover effects */
+        @media (hover: hover) {
+            .skill-chip:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+                color: white;
+                background: rgba(255, 255, 255, 0.2);
+            }
         }
 
         .skill-chip.active {
@@ -299,9 +312,9 @@
             box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
         }
 
-        /* Skill-specific styling */
+        /* Skill-specific colors with enhanced visibility */
         .angular.active {
-            background: linear-gradient(45deg, #dd1b16, #ff4444);
+            background: linear-gradient(45deg, #dd1b16, #ff6b6b);
             border-color: #ff4444;
         }
 
@@ -311,7 +324,7 @@
         }
 
         .mongodb.active {
-            background: linear-gradient(45deg, #4db33d, #6cc551);
+            background: linear-gradient(45deg, #4db33d, #69d04f);
             border-color: #4db33d;
         }
 
@@ -330,35 +343,68 @@
             border-color: #ff9900;
         }
 
-        /* Ripple effect */
-        .skill-chip::after {
-            content: '';
-            position: absolute;
-            top: 50%;
+        /* Touch feedback animation */
+        @keyframes touchFeedback {
+            0% { transform: scale(1); }
+            50% { transform: scale(0.95); }
+            100% { transform: scale(1); }
+        }
+
+        /* Mobile-specific styles */
+        @media (max-width: 768px) {
+            .skill-container {
+                padding: 15px;
+                gap: 12px;
+            }
+
+            .skill-chip {
+                padding: 12px 24px;
+                font-size: 14px;
+                width: calc(50% - 12px); /* Two chips per row on mobile */
+                text-align: center;
+            }
+
+            .skill-chip:active {
+                animation: touchFeedback 0.3s ease;
+            }
+        }
+
+        /* Small mobile devices */
+        @media (max-width: 380px) {
+            .skill-container {
+                padding: 10px;
+                gap: 8px;
+            }
+
+            .skill-chip {
+                padding: 10px 20px;
+                font-size: 13px;
+            }
+        }
+
+        /* Add description tooltip */
+        .skill-description {
+            position: fixed;
+            bottom: 20px;
             left: 50%;
-            width: 5px;
-            height: 5px;
-            background: rgba(255, 255, 255, 0.5);
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 14px;
             opacity: 0;
-            border-radius: 100%;
-            transform: scale(1, 1) translate(-50%);
-            transform-origin: 50% 50%;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            text-align: center;
+            width: 90%;
+            max-width: 300px;
         }
 
-        .skill-chip:focus:not(:active)::after {
-            animation: ripple 1s ease-out;
+        .skill-description.visible {
+            opacity: 1;
         }
 
-        @keyframes ripple {
-            0% {
-                transform: scale(0, 0);
-                opacity: 0.5;
-            }
-            100% {
-                transform: scale(100, 100);
-                opacity: 0;
-            }
-        }
     </style>
 </head>
 <body class="antialiased">
@@ -426,14 +472,14 @@
             <h2 class="subtitle">Full Stack Developer</h2>
             <p class="description">4+ years of experience in building scalable web applications and delivering innovative solutions</p>
         </div>
-        <div class="skill-container">
-            <button class="skill-chip angular" onclick="toggleSkill(this)">Angular</button>
-            <button class="skill-chip react" onclick="toggleSkill(this)">React</button>
-            <button class="skill-chip mongodb" onclick="toggleSkill(this)">MongoDB</button>
-            <button class="skill-chip mysql" onclick="toggleSkill(this)">MySQL</button>
-            <button class="skill-chip nodejs" onclick="toggleSkill(this)">NodeJS</button>
-            <button class="skill-chip aws" onclick="toggleSkill(this)">AWS</button>
-        </div>
+          <div class="skill-container">
+                <button class="skill-chip angular" data-desc="Frontend framework by Google">Angular</button>
+                <button class="skill-chip react" data-desc="Frontend library by Facebook">React</button>
+                <button class="skill-chip mongodb" data-desc="NoSQL database">MongoDB</button>
+                <button class="skill-chip mysql" data-desc="Relational database">MySQL</button>
+                <button class="skill-chip nodejs" data-desc="JavaScript runtime">NodeJS</button>
+                <button class="skill-chip aws" data-desc="Cloud computing platform">AWS</button>
+          </div>
     </header>
 
     <!-- About Section -->
@@ -879,15 +925,43 @@
             });
         });
 
-   function toggleSkill(element) {
-            // Toggle active class
+  const description = document.getElementById('skillDescription');
+        let touchTimeout;
+
+        function toggleSkill(element, event) {
+            // Toggle active state
             element.classList.toggle('active');
 
-            // Add ripple effect on click
-            element.style.animation = 'none';
-            element.offsetHeight; // Trigger reflow
-            element.style.animation = null;
+            // Show description
+            const desc = element.getAttribute('data-desc');
+            description.textContent = desc;
+            description.classList.add('visible');
+
+            // Hide description after 2 seconds
+            clearTimeout(touchTimeout);
+            touchTimeout = setTimeout(() => {
+                description.classList.remove('visible');
+            }, 2000);
         }
+
+        // Add event listeners for both click and touch
+        document.querySelectorAll('.skill-chip').forEach(chip => {
+            // Handle both click and touch events
+            chip.addEventListener('click', (e) => toggleSkill(chip, e));
+            
+            // Remove hover effect on touch devices after interaction
+            chip.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                toggleSkill(chip, e);
+            });
+        });
+
+        // Clean up description when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.skill-chip')) {
+                description.classList.remove('visible');
+            }
+        });
     </script>
 </body>
 </html>
